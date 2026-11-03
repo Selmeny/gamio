@@ -61,6 +61,7 @@ def play(low, high):
     else:
         print("Fine then.")
 
+
 def set_limit(low):
     """Set high limit to new value from user input."""
     print("Set new limit")
@@ -85,7 +86,6 @@ def good_score(number_of_guesses, range_):
         return True
 
 
-
 def high_scores():
     scores = []
     with open("scores.txt") as in_file:
@@ -96,5 +96,6 @@ def high_scores():
     for score in scores:
         marker = "!" if good_score(score[0], score[1]) else ""
         print(f"{score[0]} ({score[1]}) {marker}")
+
 
 main()
