@@ -62,13 +62,14 @@ def play(low, high):
         print("Fine then.")
 
 
-def set_limit(low):
+def set_limit(high):
     """Set high limit to new value from user input."""
     print("Set new limit")
-    new_high = get_valid_number(f"Enter a new high value, above {low}: ")
-    while new_high <= low:
+    new_high = get_valid_number(f"Enter a new high value, above {high}: ")
+
+    while new_high <= high:
         print("Higher!")
-        new_high = get_valid_number(f"Enter a new high value, above {low}: ")
+        new_high = get_valid_number(f"Enter a new high value, above {high}: ")
     return new_high
 
 
