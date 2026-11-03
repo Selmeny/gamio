@@ -43,6 +43,7 @@ def play(low, high):
     secret = random.randint(low, high)
     number_of_guesses = 1
     guess = int(input(f"Guess a number between {low} and {high}: "))
+
     while guess != secret:
         number_of_guesses += 1
         if guess < secret:
@@ -50,15 +51,15 @@ def play(low, high):
         else:
             print("Lower")
         guess = int(input(f"Guess a number between {low} and {high}: "))
+
     print(f"You got it in {number_of_guesses} guesses.")
-    if good_score(number_of_guesses, high - low + 1) == True:
+
+    if is_good_score(number_of_guesses, high - low + 1):
         print("Good guessing!")
-    else:
-        pass
+
     choice = input("Do you want to save your score? (y/N) ")
     if choice.upper() == "Y":
         save_score(number_of_guesses, low, high)
-        return
     else:
         print("Fine then.")
 
@@ -83,9 +84,10 @@ def get_valid_number(prompt):
         except ValueError:
             print("Invalid number")
     return number
-def good_score(number_of_guesses, range_):
-    if number_of_guesses <= math.ceil(math.log2(range_)):
-        return True
+
+
+def is_good_score(number_of_guesses, guesses_range):
+    return number_of_guesses <= math.ceil(math.log2(guesses_range))
 
 
 def high_scores():
@@ -96,7 +98,7 @@ def high_scores():
             scores.append((int(line[0]), int(line[1])))
     scores.sort()
     for score in scores:
-        marker = "!" if good_score(score[0], score[1]) else ""
+        marker = "!" if is_good_score(score[0], score[1]) else ""
         print(f"{score[0]} ({score[1]}) {marker}")
 
 
